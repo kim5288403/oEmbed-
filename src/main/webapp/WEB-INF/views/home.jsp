@@ -24,7 +24,6 @@
       <article>
         <div id="content_wrap">
           <div id="title_container"></div>
-          <button type="button" onclick="foo()">확인</button>
           <ul id="responseDataInContainer"></ul>
         </div>
       </article>

@@ -21,7 +21,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +39,6 @@ public class HomeController {
 	private static JSONParser jsonParser = null;
 	private static List<String> lst = null;
 	private static JSONArray jsonArray = null;
-	private static ResourceLoader resourceLoader;
 	private URL url;
 
 	public static void providerData() throws IOException {
@@ -70,13 +68,6 @@ public class HomeController {
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
-	}
-
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) throws ClientProtocolException, IOException , URISyntaxException{
-		providerData();
-
-		return "home";
 	}
 	
 	public String hostCheck(String str) {
@@ -111,30 +102,6 @@ public class HomeController {
 
 	                oembedUrl = str + "?url=" + encode;
 
-	            } else if (str.contains("_oembed")) {
-	                // instagram은 구현 불가
-	                // instagram은 엑세스 토큰이 필요하다
-	                // String getFacebookIdPwd = "https://graph.facebook.com/oauth/access"
-	                // + "_token?client_id=client_id&" +
-	                // "client_secret=client_secret"
-	                // + "&grant_type=client_credentials";
-	                // RestTemplate restTemplate = new RestTemplate();
-	                // ResponseEntity<String> response = restTemplate.getForEntity(getFacebookIdPwd,
-	                // String.class);
-
-	                // try {
-	                // Object obj = jsonParser.parse(response.getBody());
-	                // JSONObject jsonObject = (JSONObject) obj;
-
-	                // String access_token = (String) jsonObject.get("access_token");
-	                // String encode2 = URLEncoder.encode(access_token, StandardCharsets.UTF_8);
-	                // oembedUrl = str + "?url=" + encode + "&access_token=" + encode2;
-
-	                // } catch (ParseException e) {
-	                // e.printStackTrace();
-	                // }
-	                oembedUrl = "";
-
 	            } else {
 
 	                oembedUrl = str + "?format=json&url=" + encode;
@@ -147,6 +114,14 @@ public class HomeController {
 
 	    return oembedUrl;
 	}
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Model model) throws ClientProtocolException, IOException , URISyntaxException{
+		providerData();
+
+		return "home";
+	}
+	
 	
 	@GetMapping("/oembedResponse")
 	@ResponseBody
