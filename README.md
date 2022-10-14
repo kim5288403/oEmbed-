@@ -13,8 +13,9 @@ oEmbed open api 를 활용한 프로젝트
 
 ## Prerequisite  
 ```
-git clone -b--single https://github.com/kim5288403/oEmbed-.git
+git clone -b--as --single-branch https://github.com/kim5288403/oEmbed-.git
 ```
+repository를 clone 하고 IDE에서 애플리케이션을 실행해주세요.
 
 ## Files  
 `HomeController` => OEmbed Open API file    
