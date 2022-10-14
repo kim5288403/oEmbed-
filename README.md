@@ -12,7 +12,9 @@ oEmbed open api 를 활용한 프로젝트
 > Browser => Chrome
 
 ## Prerequisite  
-
+```
+git clone -b--single https://github.com/kim5288403/oEmbed-.git
+```
 
 ## Files  
 `HomeController` => OEmbed Open API file    
